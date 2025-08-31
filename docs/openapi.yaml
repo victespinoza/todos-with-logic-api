@@ -1,0 +1,43 @@
+openapi: 3.0.0
+info:
+  title: API Todos
+  version: 1.0.0
+servers:
+  - url: /api
+paths:
+  /todo:
+    get:
+      summary: Todos list
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Todo"
+    post:
+      summary: Todos create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Todo"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"
+components:
+  schemas:
+    Todo:
+      type: object
+      required: [name]
+      properties:
+        name: { type: string, example: Deposit }
+        amount: { type: integer, example: 1000 }
+        currency: { type: string, example: USD }

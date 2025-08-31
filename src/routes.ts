@@ -2,6 +2,8 @@ import { Router } from "express";
 
 const router = Router();
 
-router.get("/", () => {});
+router.get("/todo", (req, res) => {
+  res.send({ sarasa: "ok" });
+});
 
 export default router;
