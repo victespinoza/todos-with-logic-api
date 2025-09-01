@@ -1,6 +1,7 @@
 import NoValidTodoException from "@/domain/todo/NoValidTodoException";
 import TodoInMemoryRepository from "@/infrastructure/todo/TodoInMemoryRepository";
 import CreateTodo from "@/useCase/CreateTodo";
+import ListTodo from "@/useCase/ListTodo";
 import { Request, Response } from "express";
 
 class TodoController {
@@ -21,6 +22,14 @@ class TodoController {
         res.status(500).send("Unexpected error");
       }
     }
+  }
+
+  async getTodo(req: Request, res: Response) {
+    const todoRepository = new TodoInMemoryRepository();
+    const listTodo = new ListTodo(todoRepository);
+    const todos = await listTodo.execute();
+    console.info(todos);
+    res.status(200).send(todos);
   }
 }
 

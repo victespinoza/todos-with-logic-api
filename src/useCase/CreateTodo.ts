@@ -19,6 +19,7 @@ export default class CreateTodo {
       ) {
         throw new NoValidTodoException("No valid Todo amount");
       }
+      throw e;
     }
   }
 }
